@@ -1,3 +1,6 @@
 [submodule "libui-rs"]
 	path = libui-rs
 	url = https://github.com/rust-native-ui/libui-rs
+[submodule "copernica"]
+	path = copernica
+	url = https://github.com/sjmackenzie/copernica

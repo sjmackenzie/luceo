@@ -9,3 +9,5 @@ edition = "2018"
 [dependencies]
 iui = { path = "libui-rs/iui" }
 ui-sys = { path = "libui-rs/ui-sys" }
+libcopernica = { path = "copernica/libcopernica" }
+
