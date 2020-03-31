@@ -27,24 +27,26 @@ pub fn file_sharing(ui: &UI, hb: &mut HorizontalBox, state: State) -> Box<FnMut(
     hb.append(&ui, output_group, LayoutStrategy::Stretchy);
     copernica_query.on_changed(&ui, {
         let state = state.clone();
-        move |val| { state.borrow_mut().copernica.query_val = val; }
+        move |val| { state.borrow_mut().settings.val = val; }
     });
     let ui = ui.clone();
     let mut text_label = text_label.clone();
     let function =  move || {
         let state = state.borrow();
-        text_label.set_text(&ui, &format!("Text: {}", state.copernica.query_val));
+        text_label.set_text(&ui, &format!("Text: {}", state.settings.val));
     };
     Box::new(function)
 }
 
-pub fn copernica(ui: &UI, tg: &mut TabGroup, state: State) -> Box<FnMut()> {
-    let mut file_sharing_hb = HorizontalBox::new(&ui);
-    let fns = file_sharing(&ui, &mut file_sharing_hb, state);
-    tg.append(&ui, "File Sharing", file_sharing_hb);
-    let copernica_store_hb = HorizontalBox::new(&ui);
-    let copernica_chat_hb = HorizontalBox::new(&ui);
-    tg.append(&ui, "Streaming", copernica_store_hb);
-    tg.append(&ui, "Chat", copernica_chat_hb);
+pub fn settings(ui: &UI, tg: &mut TabGroup, state: State) -> Box<FnMut()> {
+    let mut copernica_hb = HorizontalBox::new(&ui);
+    let fns = file_sharing(&ui, &mut copernica_hb, state.clone());
+    tg.append(&ui, "Copernica", copernica_hb);
+    let luceo_hb = HorizontalBox::new(&ui);
+    let whistle_hb = HorizontalBox::new(&ui);
+    let identities_hb = HorizontalBox::new(&ui);
+    tg.append(&ui, "Luceo", luceo_hb);
+    tg.append(&ui, "Whistle", whistle_hb);
+    tg.append(&ui, "Identities", identities_hb);
     fns
 }
