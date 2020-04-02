@@ -38,7 +38,7 @@ pub fn file_sharing(ui: &UI, hb: &mut HorizontalBox, state: State) -> Box<FnMut(
     Box::new(function)
 }
 
-pub fn copernica(ui: &UI, tg: &mut TabGroup, state: State) -> Box<FnMut()> {
+pub fn setup(ui: &UI, tg: &mut TabGroup, state: State) -> Box<FnMut()> {
     let mut file_sharing_hb = HorizontalBox::new(&ui);
     let fns = file_sharing(&ui, &mut file_sharing_hb, state);
     tg.append(&ui, "File Sharing", file_sharing_hb);

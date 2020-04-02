@@ -2,7 +2,7 @@ use iui::prelude::*;
 use iui::controls::{TabGroup, HorizontalBox, VerticalBox, Group, Entry, Label};
 use crate::state::{State};
 
-pub fn file_sharing(ui: &UI, hb: &mut HorizontalBox, state: State) -> Box<FnMut()> {
+pub fn copernica_settings(ui: &UI, hb: &mut HorizontalBox, state: State) -> Box<FnMut()> {
     let (input_group, mut copernica_query) = {
         let mut input_group = Group::new(&ui, "");
         let mut input_vbox = VerticalBox::new(&ui);
@@ -38,9 +38,9 @@ pub fn file_sharing(ui: &UI, hb: &mut HorizontalBox, state: State) -> Box<FnMut(
     Box::new(function)
 }
 
-pub fn settings(ui: &UI, tg: &mut TabGroup, state: State) -> Box<FnMut()> {
+pub fn setup(ui: &UI, tg: &mut TabGroup, state: State) -> Box<FnMut()> {
     let mut copernica_hb = HorizontalBox::new(&ui);
-    let fns = file_sharing(&ui, &mut copernica_hb, state.clone());
+    let fns = copernica_settings(&ui, &mut copernica_hb, state.clone());
     tg.append(&ui, "Copernica", copernica_hb);
     let luceo_hb = HorizontalBox::new(&ui);
     let whistle_hb = HorizontalBox::new(&ui);

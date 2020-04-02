@@ -6,6 +6,7 @@ pub type State = Rc<RefCell<FractalideState>>;
 pub struct FractalideState {
     pub copernica: CopernicaState,
     pub luceo: LuceoState,
+    pub whistle: WhistleState,
     pub settings: SettingsState,
 }
 
@@ -14,7 +15,11 @@ pub struct CopernicaState {
 }
 
 pub struct LuceoState {
-    pub query_val: String,
+    pub test_entry: String,
+}
+
+pub struct WhistleState {
+    pub test_entry: String,
 }
 
 pub struct SettingsState {

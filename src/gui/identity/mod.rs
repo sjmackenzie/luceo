@@ -3,7 +3,7 @@ use iui::controls::{TabGroup, Group};
 pub mod my;
 pub mod theirs;
 
-pub fn identity(ui: &UI, identity_tg: &mut TabGroup) {
+pub fn setup(ui: &UI, identity_tg: &mut TabGroup) {
     let mut my_id_g = Group::new(&ui, "");
     let mut their_id_g = Group::new(&ui, "");
     my::my_ids(&ui, &mut my_id_g);
