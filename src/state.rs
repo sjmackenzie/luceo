@@ -8,6 +8,7 @@ pub struct FractalideState {
     pub luceo: LuceoState,
     pub whistle: WhistleState,
     pub settings: SettingsState,
+    pub identities: IdentitiesState,
 }
 
 pub struct CopernicaState {
@@ -24,4 +25,8 @@ pub struct WhistleState {
 
 pub struct SettingsState {
     pub val: String,
+}
+
+pub struct IdentitiesState {
+    pub current_identity: String,
 }

@@ -7,7 +7,7 @@ mod luceo;
 mod copernica;
 mod whistle;
 mod settings;
-use { crate::state::{State, FractalideState, CopernicaState, LuceoState, WhistleState, SettingsState}, };
+use { crate::state::{State, FractalideState, CopernicaState, LuceoState, WhistleState, IdentitiesState, SettingsState}, };
 
 pub fn setup() {
     let state: State = Rc::new(RefCell::new(
@@ -24,38 +24,41 @@ pub fn setup() {
             settings: SettingsState {
                 val: "".into(),
             },
+            identities: IdentitiesState {
+                current_identity: "".into(),
+            },
         }
     ));
     let ui = UI::init().unwrap();
-    let mut tab_group = TabGroup::new(&ui);
+    let mut tg = TabGroup::new(&ui);
 
     // ************** Copernica ****************
     let mut copernica_tg = TabGroup::new(&ui);
     let mut copernica_events = copernica::setup(&ui, &mut copernica_tg, state.clone());
-    tab_group.append(&ui, "Copernica", copernica_tg);
+    tg.append(&ui, "Copernica", copernica_tg);
 
     // ************** Luceo ****************
     let mut luceo_tg = TabGroup::new(&ui);
     let mut luceo_events = luceo::setup(&ui, &mut luceo_tg, state.clone());
-    tab_group.append(&ui, "Luceo", luceo_tg);
+    tg.append(&ui, "Luceo", luceo_tg);
 
     // ************** Whistle ****************
     let mut whistle_tg = TabGroup::new(&ui);
     let mut whistle_events = whistle::setup(&ui, &mut whistle_tg, state.clone());
-    tab_group.append(&ui, "Whistle", whistle_tg);
+    tg.append(&ui, "Whistle", whistle_tg);
 
     // ************** Identities ****************
     let mut identity_tg = TabGroup::new(&ui);
-    identity::setup(&ui, &mut identity_tg);
-    tab_group.append(&ui, "Identities", identity_tg);
+    let mut identity_events = identity::setup(&ui, &mut identity_tg, state.clone());
+    tg.append(&ui, "Identities", identity_tg);
 
     // ************** Settings ****************
     let mut settings_tg = TabGroup::new(&ui);
     let mut settings_events = settings::setup(&ui, &mut settings_tg, state.clone());
-    tab_group.append(&ui, "Settings", settings_tg);
+    tg.append(&ui, "Settings", settings_tg);
 
     let mut window = Window::new(&ui, "Fractalide", 300, 150, WindowType::NoMenubar);
-    window.set_child(&ui, tab_group);
+    window.set_child(&ui, tg);
     window.show(&ui);
     let functions = move || {
         copernica_events();
