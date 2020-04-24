@@ -1,3 +1,4 @@
+pub mod wallet_overview;
 pub mod summary;
 pub mod send;
 pub mod receive;

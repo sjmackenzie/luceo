@@ -17,8 +17,7 @@ pub fn dialog() -> Dialog {
                         .child(DummyView.fixed_width(5))
                         .child(TextView::new("ceo2h43nthuti4n5h6t4nih49348yy938ih39i33i34"))
                 )
+                .child(DummyView.fixed_height(1))
         )
-        .button("Delete Wallet", |s| s.quit())
-        .button("Delete Wallet", |s| s.quit())
         .h_align(HAlign::Center)
 }

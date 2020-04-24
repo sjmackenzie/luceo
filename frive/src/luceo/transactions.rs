@@ -39,16 +39,16 @@ fn transactions() -> LinearLayout {
     tx_view.add_child(TextView::new(tx1.value));
     txs.push(tx_view);
     let mut txs_view = LinearLayout::vertical();
+    txs_view.add_child(DummyView.fixed_height(1));
     for tx in txs {
         txs_view.add_child(tx);
     }
+    txs_view.add_child(DummyView.fixed_height(1));
     txs_view
 }
 
 pub fn dialog() -> Dialog {
     Dialog::new()
     .content(transactions())
-    .button("Delete Wallet", |s| s.quit())
-    .button("Delete Wallet", |s| s.quit())
     .h_align(HAlign::Center)
 }

@@ -28,17 +28,13 @@ struct Options {
 
 fn main() {
     let mut siv = Cursive::default();
+    siv.add_global_callback('q', |s| s.quit());
     let copernica_tp = TabPanel::new()
         .with_tab("Search", copernica::search::dialog())
         .with_tab("Manage", copernica::manage::dialog())
         .with_tab("Settings", copernica::settings::dialog());
 
-    let luceo_tp = TabPanel::new()
-        .with_tab("Summary", luceo::summary::dialog())
-        .with_tab("Send", luceo::send::dialog())
-        .with_tab("Receive", luceo::receive::dialog())
-        .with_tab("Transactions", luceo::transactions::dialog())
-        .with_tab("Settings", luceo::settings::dialog());
+    let luceo_overview_tp = luceo::wallet_overview::dialog();
 
     let whistle_tp = TabPanel::new()
         .with_tab("Create", whistle::create::dialog())
@@ -47,7 +43,7 @@ fn main() {
 
     let mut top_tp = TabPanel::new()
         .with_tab("Copernica", copernica_tp)
-        .with_tab("Luceo", luceo_tp)
+        .with_tab("Luceo", luceo_overview_tp)
         .with_tab("Whistle", whistle_tp);
 
     siv.add_layer(top_tp);
