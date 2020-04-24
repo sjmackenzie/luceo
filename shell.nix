@@ -4,10 +4,15 @@ let
   shell = pkgs.stdenv.mkDerivation {
     name = "shell";
     buildInputs = [
-      libui
+      qt5.full
+      qt5.qtcharts
+      qt5.qttools
+      qtcreator
       pkgconfig
       clang
-      glibc
+      gtk3
+      ncurses
+      #glibc
       cmake
       rustup
     ];

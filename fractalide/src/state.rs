@@ -1,7 +1,10 @@
-use std::rc::Rc;
-use std::cell::RefCell;
+use {
+    std::{
+        sync::{Arc, Mutex},
+    },
+};
 
-pub type State = Rc<RefCell<FractalideState>>;
+pub type State = Arc<Mutex<FractalideState>>;
 
 pub struct FractalideState {
     pub copernica: CopernicaState,

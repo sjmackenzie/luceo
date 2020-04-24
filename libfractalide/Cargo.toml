@@ -1,0 +1,10 @@
+[package]
+name = "libfractalide"
+version = "0.1.0"
+authors = ["Stewart Mackenzie <sjm@fractalide.com>"]
+edition = "2018"
+
+[dependencies]
+hdkeygen = { git = "https://github.com/input-output-hk/chain-wallet-libs" }
+wallet = { git = "https://github.com/input-output-hk/chain-wallet-libs" }
+libcopernica = { path = "../../../copernica/libcopernica" }
