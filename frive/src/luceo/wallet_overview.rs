@@ -12,7 +12,7 @@ use {
 
 pub fn dialog() -> Dialog {
     let select = SelectView::<String>::new()
-        .on_submit(on_submit)
+        .on_submit(challenge)
         .with_name("select");
     let buttons = LinearLayout::vertical()
         .child(Button::new("Add new", add_name))
@@ -62,19 +62,29 @@ fn delete_name(s: &mut Cursive) {
     }
 }
 
-fn on_submit(s: &mut Cursive, name: &str) {
+fn challenge(s: &mut Cursive, name: &str) {
+    s.add_layer(
+        Dialog::new()
+            .content(Dialog::around(EditView::new()
+                .on_submit(wallet)
+                .with_name("password")
+                .fixed_width(10)))
+            .title(format!("Insert password"))
+            .button("Cancel", |s|{s.pop_layer();}));
+}
+
+fn wallet(s: &mut Cursive, password: &str) {
     let luceo_tp = TabPanel::new()
         .with_tab("Summary", luceo::summary::dialog())
         .with_tab("Send", luceo::send::dialog())
         .with_tab("Receive", luceo::receive::dialog())
         .with_tab("Transactions", luceo::transactions::dialog())
         .with_tab("Settings", luceo::settings::dialog());
-    s.add_layer(
-        Dialog::new()
-        .content(
-            LinearLayout::horizontal()
-                .child(luceo_tp)
-            )
-        .title(format!("Wallet: {}", name))
-        .button("Close Wallet", |s|{ s.pop_layer();}));
+    if password == "123" {
+        s.add_layer(Dialog::new()
+        .content(luceo_tp)
+        .button("Close Wallet", |s|{s.pop_layer();}));
+    } else {
+        s.pop_layer();
+    }
 }
