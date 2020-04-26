@@ -39,6 +39,7 @@ pub fn dialog() -> Dialog {
                         .child(DummyView.fixed_width(9))
                         .child(
                             EditView::new()
+                                .secret()
                                 .with_name("luceo_sending_password")
                                 .fixed_width(50)
                         )
@@ -46,6 +47,5 @@ pub fn dialog() -> Dialog {
                 .child(DummyView.fixed_height(1))
         )
         .button("Send", |s| s.quit())
-        .button("Cancel", |s| s.quit())
         .h_align(HAlign::Center)
 }

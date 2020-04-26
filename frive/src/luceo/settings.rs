@@ -14,7 +14,7 @@ pub fn dialog() -> Dialog {
                 .child(
                     LinearLayout::horizontal()
                         .child(TextView::new("Wallet Name"))
-                        .child(DummyView.fixed_width(5))
+                        .child(DummyView.fixed_width(2))
                         .child(
                             EditView::new()
                                 .with_name("wallet_name")
@@ -24,15 +24,28 @@ pub fn dialog() -> Dialog {
                 .child(DummyView.fixed_height(1))
                 .child(
                     LinearLayout::horizontal()
-                        .child(TextView::new("Wallet Password"))
+                        .child(TextView::new("Old Password"))
                         .child(DummyView.fixed_width(1))
                         .child(
                             EditView::new()
-                                .with_name("wallet_password")
+                                .secret()
+                                .with_name("old_wallet_password")
                                 .fixed_width(50)
                         )
                 )
                 .child(DummyView.fixed_height(1))
+                .child(
+                    LinearLayout::horizontal()
+                        .child(TextView::new("New Password"))
+                        .child(DummyView.fixed_width(1))
+                        .child(
+                            EditView::new()
+                                .secret()
+                                .with_name("new_wallet_password")
+                                .fixed_width(50)
+                        )
+                )
         )
+        .button("Update", |s|{s.pop_layer(); s.pop_layer();})
         .h_align(HAlign::Center)
 }

@@ -66,6 +66,7 @@ fn challenge(s: &mut Cursive, name: &str) {
     s.add_layer(
         Dialog::new()
             .content(Dialog::around(EditView::new()
+                .secret()
                 .on_submit(wallet)
                 .with_name("password")
                 .fixed_width(10)))
@@ -83,7 +84,7 @@ fn wallet(s: &mut Cursive, password: &str) {
     if password == "123" {
         s.add_layer(Dialog::new()
         .content(luceo_tp)
-        .button("Close Wallet", |s|{s.pop_layer();}));
+        .button("Close Wallet", |s|{s.pop_layer(); s.pop_layer();}));
     } else {
         s.pop_layer();
     }

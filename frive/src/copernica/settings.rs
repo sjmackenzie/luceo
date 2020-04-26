@@ -34,7 +34,5 @@ pub fn dialog() -> Dialog {
                 )
                 .child(DummyView.fixed_height(1))
         )
-        .button("Delete Wallet", |s| s.quit())
-        .button("Delete Wallet", |s| s.quit())
         .h_align(HAlign::Center)
 }
