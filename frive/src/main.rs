@@ -3,7 +3,7 @@ mod luceo;
 mod whistle;
 use {
     structopt::StructOpt,
-    libfractalide,
+    libfractalide::{gstreamer},
     cursive_tabs::TabPanel,
     cursive::{
         Cursive,
@@ -25,7 +25,7 @@ struct Options {
     #[structopt(short = "c", long = "config", help = "Location of your fractalide config file")]
     config: Option<String>,
 }
-
+/*
 fn main() {
     let mut siv = Cursive::default();
     siv.add_global_callback('q', |s| s.quit());
@@ -48,5 +48,9 @@ fn main() {
 
     siv.add_layer(top_tp);
     siv.run();
+}
+*/
 
+fn main() {
+    gstreamer()
 }

@@ -8,6 +8,12 @@ let
       qt5.qtcharts
       qt5.qttools
       qtcreator
+      gst_all_1.gstreamer
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-ugly
+      gst_all_1.gst-editing-services
+      glib-networking
       pkgconfig
       clang
       gtk3
